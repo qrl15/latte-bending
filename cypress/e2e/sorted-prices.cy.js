@@ -61,7 +61,7 @@
 
 // @ts-check
 ///<reference types="cypress" />
-
+//@ts-ignore
 chai.use(require('chai-sorted'));
 import 'cypress-data-session';
 
@@ -79,6 +79,10 @@ describe('Example Cypress', () => {
           .should('equal', '/inventory.html')
         cy.getCookie('session-username').should('exist')
       },
+      /**
+       * Restores the session by setting a specific cookie value.
+       * @param {Cypress.Cookie} userCookie - The user session cookie to set for session restoration.
+       */
       recreate(userCookie){
         cy.setCookie('session-username', userCookie.value)
         cy.visit('/inventory.html')
@@ -87,7 +91,10 @@ describe('Example Cypress', () => {
 
     cy.location('pathname').should('equal', '/inventory.html')
   });
-
+  /**
+   * Sorts the products by price or name based on the specified order.
+   * @param {string} order - Specifies the sorting order. Expected values are 'lohi' (low to high), 'hilo' (high to low), 'az' (alphabetical A-Z), or 'za' (alphabetical Z-A).
+   */
 
   function sortByPriceOrName(order) {
     expect(order, 'sort order').to.be.oneOf(['lohi', 'hilo', 'az', 'za']);

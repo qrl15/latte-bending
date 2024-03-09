@@ -1,6 +1,6 @@
 // @ts-check
 ///<reference types="cypress" />
-
+//@ts-ignore
 chai.use(require('chai-sorted'));
 import 'cypress-data-session';
 
@@ -31,7 +31,10 @@ describe('Example Cypress', {testIsolation: false}, () => {
 
 
   })
-
+  /**
+   * Verifies that an error message is shown and the username and password fields are marked with an error.
+   * @param {string} order - The error message text to check for visibility.
+   */
   function sortByPriceOrName(order) {
     expect(order, 'sort order').to.be.oneOf(['lohi', 'hilo', 'az', 'za']);
     cy.get('[data-test="product_sort_container"]').select(order);

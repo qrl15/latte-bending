@@ -1,7 +1,7 @@
 // @ts-check
 ///<reference types ="cypress" />
 import 'cypress-map'
-
+//@ts-ignore
 chai.use(require('chai-sorted'))
 
 

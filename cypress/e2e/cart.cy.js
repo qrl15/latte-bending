@@ -3,6 +3,7 @@
 
 import { LoginPage } from './login.page'
 import { inventoryItem } from './inventory-items.page'
+//@ts-ignore
 chai.use(require('chai-sorted'))
 describe('template spec', { viewportHeight: 1200 }, () => {
 

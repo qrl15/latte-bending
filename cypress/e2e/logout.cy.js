@@ -1,6 +1,7 @@
 ///<reference types ="cypress" />
 
 import { LoginPage } from './login.page'
+//@ts-ignore
 chai.use(require('chai-sorted'))
 
 describe("Session Logout", () => {
