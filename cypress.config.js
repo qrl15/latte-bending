@@ -1,0 +1,36 @@
+const { defineConfig } = require("cypress");
+// const registerDataSession = require('cypress-data-session/src/plugin')
+module.exports = defineConfig({
+  projectId: "wumo2i",
+  video:true,
+  e2e: {
+    baseUrl: 'http://localhost:3000',
+    supportFile: false,
+    env: {
+      users: {
+        standard: {
+          username: 'standard_user',
+          password: 'secret_sauce'
+        },
+        lockedout: {
+          username: 'locked_out_user',
+          password: 'secret_sauce'
+        },
+        problemUser: {
+          username: 'problem_user',
+          password: 'secret_sauce'
+        },
+        glitchUser: {
+          username: 'performance_glitch_user',
+          password: 'secret_sauce'
+        },
+      }
+    },
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+
+      // registerDataSession(on, config)
+      // return config
+    },
+  },
+});
