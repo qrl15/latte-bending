@@ -1,15 +1,3 @@
-# taste-the-sauce
-
-> Cypress testing tutorial using the SauceLabs sample web app
-
-![Store login](./images/store1.png)
-
-![Store inventory](./images/store2.png)[cypress-build.iml](..%2F.idea%2Fcypress-build.iml)
-
-🎓 This is the example application for the course [Testing The Swag Store](https://cypress.tips/courses/swag-store).
-
-## Install[.gitignore](..%2F.idea%2F.gitignore)
-
 Requires Node v16+
 
 ```
