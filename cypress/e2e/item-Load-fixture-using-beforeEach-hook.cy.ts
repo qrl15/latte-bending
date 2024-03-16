@@ -5,6 +5,14 @@ import 'cypress-map'
 chai.use(require('chai-sorted'))
 
 
+
+interface itemInventory{
+  item: string
+  name: string
+  desc: string
+  price: string
+
+}
 describe("Confirm Item Text Details", () => {
   beforeEach(() => {
     cy.visit('/')
@@ -26,7 +34,7 @@ describe("Confirm Item Text Details", () => {
 
   it('Very Item Details from Fixture', () => {
     cy.fixture('inventory-list.json').then((items) => {
-      items.forEach((item) => { 
+      items.forEach((item: itemInventory) => { 
         cy.contains('.inventory_item', item.name).within(() => {
           cy.contains('.inventory_item_name', item.name)
           cy.contains('.inventory_item_desc', item.desc)

@@ -9,7 +9,7 @@ export const inventoryItem = {
      * Adds an item to the shopping cart
      * @param {string} name
      * */
-    addItem(name) {
+    addItem(name: string) {
         cy.contains('.inventory_item', name)
             .contains('button', 'Add to cart').click()
     }
