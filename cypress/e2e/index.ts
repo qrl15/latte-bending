@@ -7,3 +7,7 @@ export interface LoginInfo {
     username: string
     password: string
 }
+
+export interface justText {
+    cartContents: string
+}
