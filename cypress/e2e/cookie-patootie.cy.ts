@@ -1,6 +1,6 @@
 // @ts-check
 ///<reference types="cypress" />
-
+//@ts-ignore
 chai.use(require('chai-sorted'));
 import 'cypress-data-session';
 
@@ -32,7 +32,7 @@ describe('Example Cypress', {testIsolation: false}, () => {
 
   })
 
-  function sortByPriceOrName(order) {
+  function sortByPriceOrName(order: string) {
     expect(order, 'sort order').to.be.oneOf(['lohi', 'hilo', 'az', 'za']);
     cy.get('[data-test="product_sort_container"]').select(order);
   }
