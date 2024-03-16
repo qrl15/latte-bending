@@ -88,7 +88,7 @@ describe('Product', () => {
       // from each element, get the attribute "data-itemid"
       // and confirm the ids are unique
       .invoke('toArray')
-      .invoke('map', (el) => el.getAttribute('data-itemid'))
+      .invoke('map', (el: any) => el.getAttribute('data-itemid'))
       .should((ids) => {
         const unique = Cypress._.uniq(ids)
         expect(unique).to.deep.equal(ids)
@@ -103,7 +103,7 @@ describe('Product', () => {
       .invoke('attr', 'data-itemid')
       .should('be.a', 'string')
       .then((itemId) => {
-        cy.log(itemId)
+
       })
   })
 

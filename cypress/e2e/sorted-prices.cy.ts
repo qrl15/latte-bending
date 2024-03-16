@@ -59,8 +59,7 @@
 
 // });
 
-// @ts-check
-///<reference types="cypress" />
+
 //@ts-ignore
 chai.use(require('chai-sorted'));
 import 'cypress-data-session';
@@ -83,7 +82,7 @@ describe('Example Cypress', () => {
        * Restores the session by setting a specific cookie value.
        * @param {Cypress.Cookie} userCookie - The user session cookie to set for session restoration.
        */
-      recreate(userCookie){
+      recreate(userCookie: Cypress.Cookie){
         cy.setCookie('session-username', userCookie.value)
         cy.visit('/inventory.html')
       }
@@ -96,7 +95,7 @@ describe('Example Cypress', () => {
    * @param {string} order - Specifies the sorting order. Expected values are 'lohi' (low to high), 'hilo' (high to low), 'az' (alphabetical A-Z), or 'za' (alphabetical Z-A).
    */
 
-  function sortByPriceOrName(order) {
+  function sortByPriceOrName(order: string) {
     expect(order, 'sort order').to.be.oneOf(['lohi', 'hilo', 'az', 'za']);
     cy.get('[data-test="product_sort_container"]').select(order);
   }

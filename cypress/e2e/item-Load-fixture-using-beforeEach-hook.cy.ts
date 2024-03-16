@@ -1,10 +1,18 @@
 // @ts-check
 ///<reference types ="cypress" />
 import 'cypress-map'
-import item from '../fixtures/bike-static-light.json'
+//@ts-ignore
 chai.use(require('chai-sorted'))
 
 
+
+interface itemInventory{
+  item: string
+  name: string
+  desc: string
+  price: string
+
+}
 describe("Confirm Item Text Details", () => {
   beforeEach(() => {
     cy.visit('/')
@@ -12,6 +20,7 @@ describe("Confirm Item Text Details", () => {
     cy.get('[data-test="password"]').type('secret_sauce');
     cy.get('[data-test="login-button"]').click();
     cy.location('pathname').should('equal', '/inventory.html')
+    
 
   })
 
@@ -23,14 +32,17 @@ describe("Confirm Item Text Details", () => {
     })
   })
 
-  it("Load Fixture Data", function() {
-
-      cy.contains('.inventory_item', item.name).within(() => {
-        cy.contains('.inventory_item_name', item.name)
-        cy.contains('.inventory_item_desc', item.description)
-        cy.contains('.inventory_item_price', item.price)
-
+  it('Very Item Details from Fixture', () => {
+    cy.fixture('inventory-list.json').then((items) => {
+      items.forEach((item: itemInventory) => { 
+        cy.contains('.inventory_item', item.name).within(() => {
+          cy.contains('.inventory_item_name', item.name)
+          cy.contains('.inventory_item_desc', item.desc)
+          cy.contains('.inventory_item_price', item.price)
+        })
+      })
     })
-
   })
+
+
 })
