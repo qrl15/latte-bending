@@ -77,3 +77,10 @@ export class ShoppingCart {
 }
 
 ShoppingCart.LISTENERS = [];
+
+
+if (window.Cypress) {
+  // allow Cypress tests to call ShoppingCart methods
+  // and access its data
+  window.ShoppingCart = ShoppingCart
+}

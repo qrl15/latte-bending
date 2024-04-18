@@ -24,8 +24,8 @@ describe('template spec', { viewportHeight: 1200 }, () => {
 
 
   it('Adding product', {viewportHeight: 1200},() => {
-    inventoryItem.getCartBadge().should('not.exist')
 
+    inventoryItem.getCartBadge().should('not.exist')
     inventoryItem.addItem('Sauce Labs Bike Light')
       cy.contains('.inventory_item', 'Sauce Labs Bike Light').within(() => {
         cy.contains('button', 'Add to cart').should('not.exist')
@@ -44,6 +44,7 @@ describe('template spec', { viewportHeight: 1200 }, () => {
     ]
     const ids = items.map((name) => Cypress._.find(inventory, {name})!.id)
     items.forEach(inventoryItem.addItem)
+
     cy.log('**added all items to cart**')
 
     inventoryItem.getCartBadge().should('have.text', items.length)
@@ -59,7 +60,7 @@ describe('template spec', { viewportHeight: 1200 }, () => {
           cy.contains('.cart_quantity',1 )
         })
       })
-      
+
       cy.window()
       .its('localStorage')
       .invoke('getItem', 'cart-contents')
@@ -104,21 +105,6 @@ describe('template spec', { viewportHeight: 1200 }, () => {
     })
 
 
-
-      // get the application window object
-      // https://on.cypress.io/window
-
-      
-      // cy.window().its('localStorage').invoke('getItem', 'cart-contents').should('exist')
-      // .then(JSON.parse)
-      // .should('deep.equal', [0, 1, 2])
-      // get its property "localStorage"
-      // https://on.cypress.io/its
-      // and call the method "getItem" to get the cart contents
-      // https://on.cypress.io/invoke
-      // confirm the list is [0, 1, 2]
-      // https://glebbahmutov.com/cypress-examples/commands/assertions.html
-      // Tip: local storage usually has stringified JSON
   })
 
   it('Remove items from the cart', {viewportHeight: 1200}, () => {
@@ -138,6 +124,52 @@ describe('template spec', { viewportHeight: 1200 }, () => {
     inventoryItem.getCartBadge().should('have.length', 1)
   })
 
-
+  /**
+   * directly manipulating localStorage for setting up cart contents is more efficient for tests 
+   * focused on verifying the correct display of cart items because it simplifies the test setup,
+   *  reduces execution time, and isolates the functionality being tested. This method allows for a 
+   * focused verification of the cart page's ability to correctly interpret and display cart contents 
+   * as stored in localStorage, without the overhead of simulating the complete user journey to add 
+   * items to the cart.
+   */
+  it('shows the cart items', { viewportHeight: 1200 }, () => {
+    const items = [
+      'Sauce Labs Bike Light',
+      'Sauce Labs Bolt T-Shirt',
+      'Sauce Labs Onesie',
+      'Test.allTheThings() T-Shirt (Red)',
+      'Sauce Labs Backpack',
+      'Sauce Labs Fleece Jacket'
+    ]
+    // find an id for each inventory item by name
+    // and store the ids in the array "ids"
+    // const ids = ...
+    const ids = items.map((name) => Cypress._.find(inventory, { name })!.id)
+    // set the ids in the local storage item "cart-contents"
+    // Tip: local storage usually has stringified data
+    window.localStorage.setItem('cart-contents', JSON.stringify(ids))
+    // visit the cart page
+    // https://on.cypress.io/visit
+    cy.visit('/cart.html')
+    // confirm each item name is present
+    // confirm the cart items list has the right number of elements
+    cy.get('.cart_list .cart_item').should('have.length', items.length)
+    cy.log('**shows each item in order**')
+    // iterate over the items
+    items.forEach((itemName, k) => {
+      // confirm each itm is at the right place
+      // on the page in the list of items
+      // https://on.cypress.io/get
+      // https://on.cypress.io/eq
+      cy.get('.cart_list .cart_item')
+        .eq(k)
+        .within(() => {
+          // and confirm that within the item the name
+          // is correct and the quantity is 1
+          cy.contains('.inventory_item_name', itemName)
+          cy.contains('.cart_quantity', 1)
+        })
+    })
+  })
 
 })
