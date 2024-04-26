@@ -1,6 +1,6 @@
 ///<reference types ="cypress" />
 
-import { LoginPage } from './login.page'
+import { LoginPage } from '../../support/pages/login.page'
 //@ts-ignore
 chai.use(require('chai-sorted'))
 

@@ -2,11 +2,12 @@
 ///<reference types ="cypress" />
 
 
-import { LoginPage } from './login.page'
-import { inventoryItem } from './inventory-items.page'
-import { InventoryData } from '../../src/utils/InventoryData'
-import { LoginInfo } from '.'
-import inventory from '../fixtures/inventory-list.json'
+import { LoginPage } from '../../support/pages/login.page'
+import { inventoryItem } from '../../support/pages/inventory-items.page'
+import { InventoryData } from '../../../src/utils/InventoryData'
+import { LoginInfo } from '../../support/pages'
+import inventory from '../../fixtures/inventory-list.json'
+import { CheckoutPage } from '../../support/pages/checkout.page'
 
 describe('Checkout', () => {
     const user: LoginInfo = Cypress.env('users').standard
@@ -18,7 +19,7 @@ describe('Checkout', () => {
     // before each test, quickly login the user
     // or restore the previous user session
     beforeEach(() => {
-      LoginPage.setLogin(user.username, user.password)
+      LoginPage.login(user.username, user.password)
     })
   
     it('goes through the check out pages', { viewportHeight: 1200 }, () => {

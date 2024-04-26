@@ -1,10 +1,10 @@
 // @ts-check
 ///<reference types ="cypress" />
-import 'cypress-map'
-import { LoginPage } from './login.page'
-import { inventoryItem } from './inventory-items.page'
+// import 'cypress-map'
+import { LoginPage } from '@support/pages/login.page'
+import { inventoryItem } from '@support/pages/inventory-items.page'
 
-import { LoginPage } from '../E2e/login.page';
+import { LoginPage } from '@support/pages/login.page';
 //@ts-ignore
 chai.use(require('chai-sorted'))
 
@@ -27,7 +27,7 @@ describe("Confirm Item Text Details", () => {
   }
 
   beforeEach(() => {
-    LoginPage.setLogin(user.username, user.password)
+    LoginPage.login(user.username, user.password)
     cy.visit('/inventory.html')
     cy.location('pathname').should('equal', '/inventory.html')
   })

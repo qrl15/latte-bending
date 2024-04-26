@@ -1,10 +1,10 @@
 // @ts-check
 ///<reference types="cypress" />
 
-import { LoginPage } from './login.page'
-import { inventoryItem } from './inventory-items.page'
-import { LoginInfo, justText } from '.'
-import inventory from '../fixtures/inventory-list.json'
+import { LoginPage } from '../../support/pages/login.page'
+import { inventoryItem } from '../../support/pages/inventory-items.page'
+import { LoginInfo, justText } from '../../support/pages'
+import inventory from '../../fixtures/inventory-list.json'
 
 //@ts-ignore
 chai.use(require('chai-sorted'))
@@ -17,7 +17,7 @@ describe('template spec', { viewportHeight: 1200 }, () => {
   }
 
   beforeEach(() => {
-    LoginPage.setLogin(user.username, user.password)
+    LoginPage.login(user.username, user.password)
     cy.visit('/inventory.html')
     cy.location('pathname').should('equal', '/inventory.html')
   })

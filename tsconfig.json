@@ -8,7 +8,16 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {
+      "@support/*": ["../cypress/support/*"],
+      "@fixtures/*": ["../cypress/fixtures/*"]
+    }
   },
-  "include":  ["cypress/support/*.ts", "cypress/e2e/*.js", "cypress/e2e/*.ts", "cypress/support/index.d.ts"]
+  "include":  [
+    "cypress/support/**/*.ts",
+    "cypress/e2e/**/*.js",
+    "cypress/e2e/**/*.ts"
+  ]
 }

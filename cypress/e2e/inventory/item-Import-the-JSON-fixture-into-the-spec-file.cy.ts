@@ -1,7 +1,7 @@
 // @ts-check
 ///<reference types ="cypress" />
 import 'cypress-map'
-import item from '../fixtures/bike-static-light.json'
+import item from '../../fixtures/bike-static-light.json'
 //@ts-ignore
 chai.use(require('chai-sorted'))
 
