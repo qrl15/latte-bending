@@ -1,15 +1,53 @@
 ///<reference types ="cypress" />
 
-import { LoginPage } from '../../support/pages/login.page'
+import { LoginInfo } from '@support/pages'
+import { LoginPage } from '@support/pages/login.page'
 //@ts-ignore
 chai.use(require('chai-sorted'))
+
+
+
+
 
 describe("Locked out user", () => {
   beforeEach(() => { 
     cy.visit('/')
 
   })
+  const user: LoginInfo = Cypress.env('users').lockedout
+  if(!user){
+    throw new Error('Missing the Lockedout user')
+  }
 
+  it.only('Lockout user REFACTOR', () => {
+    cy.visit('/')
+    LoginPage.getUsername().type(user.username)
+    LoginPage.getPassword().type(user.password)
+    LoginPage.noErrors()
+
+    LoginPage.getLogin().click()
+    cy.log('**shows errors**')
+    LoginPage.getUsername().should('have.class', 'error')
+    LoginPage.getPassword().should('have.class', 'error')
+    cy.location('pathname').should('equal', '/')
+    // confirm there is an error message
+    // and click its "close" button after 1 second delay
+    // https://on.cypress.io/contains
+    // https://on.cypress.io/find
+    // https://on.cypress.io/wait
+    LoginPage.getError()
+      .should('include.text', 'locked out')
+      .and('be.visible')
+      // wait 1 second for clarity
+      .wait(1000)
+      .find('button.error-button')
+      .click()
+    // confirm the errors go away, but the input fields are not cleared
+    LoginPage.noErrors()
+    LoginPage.getUsername().should('have.value', user.username)
+    LoginPage.getPassword().should('have.value', user.password)
+
+  })
 
   it("locked_out_user test validation", () => {
     LoginPage.typeUsername('locked_out_user')
@@ -78,14 +116,14 @@ describe("Locked out user", () => {
     // have the "error" CSS class included
   })
 
-  it.only("shows an error for empty password field", () => {
+  it("shows an error for empty password field", () => {
     LoginPage.getPassword().type('secret_sauce')
     LoginPage.submitLogin()
     LoginPage.getUsername().should('have.class', 'error')
 
   })
 
-  it.only("shows an error for empty username field", () => {
+  it("shows an error for empty username field", () => {
 
     LoginPage.submitLogin()
     LoginPage.showsError('Epic sadface: Username is required')

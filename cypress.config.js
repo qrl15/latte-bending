@@ -25,6 +25,9 @@ module.exports = defineConfig({
           username: 'performance_glitch_user',
           password: 'secret_sauce'
         },
+      },
+      'cypress-watch-and-reload': {
+        watch: ['src/**'],
       }
     },
     setupNodeEvents(on, config) {
