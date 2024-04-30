@@ -37,7 +37,12 @@ Cypress.Commands.add('fillForm',
     cy.wrap($form, { log: false }).within(() => {
       // iterate over the input fields
       // and type into each selector (key) the value
-      Cypress._.forEach(inputs, (value, selector) => {cy.get(selector).type(value)})
+      Cypress._.forEach(inputs, (value, selector) => {
+        cy.get(selector).type(value)
+
+        // confirm the input has been set correctly
+        cy.get(selector).should('have.value', value)
+      })
     })
   },
 )

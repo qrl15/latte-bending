@@ -16,7 +16,7 @@ export const CheckoutPage = {
    *    .submit()
    */
 
-fillInformationForm(firstName = 'Joe', lastName = 'Smith',zipCode = '90210',){
+fillInformationForm(firstName = 'Earl', lastName = 'Smith',zipCode = '90210',){
 
     return cy.get('.checkout_info_wrapper form').fillForm({
         '#first-name': firstName,
