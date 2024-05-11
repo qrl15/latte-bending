@@ -59,3 +59,9 @@
     width: 100%;
   }
 }
+
+
+/** Component test Button **/ 
+button:disabled {
+  cursor: not-allowed;
+}
