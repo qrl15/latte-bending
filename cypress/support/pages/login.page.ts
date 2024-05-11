@@ -13,7 +13,7 @@ export const LoginPage = {
       return cy.get(LoginPage.selectors.password)
     },
     getError() {
-      return cy.get('[data-test=error]')
+      return cy.getByTest('error')
     },
     noErrors() {
       cy.log('**there are no errors**')
@@ -23,7 +23,7 @@ export const LoginPage = {
     },
     // new methods
     getLogin() {
-      return cy.get('[data-test=login-button]')
+      return cy.getByTest('[data-test=login-button]')
     },
     showsError(text: string) {
       cy.contains('[data-test=error]', text).should('be.visible')
