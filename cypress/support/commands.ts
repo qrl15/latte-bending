@@ -46,3 +46,9 @@ Cypress.Commands.add('fillForm',
     })
   },
 )
+
+Cypress.Commands.add('getByTest', (testId) => {
+
+  const log = Cypress.log({name: 'getByTest', message: testId})
+  cy.get(`[data-test="${testId}"]`)
+})
