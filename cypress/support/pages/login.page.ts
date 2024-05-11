@@ -23,7 +23,7 @@ export const LoginPage = {
     },
     // new methods
     getLogin() {
-      return cy.getByTest('[data-test=login-button]')
+      return cy.getByTest('login-button')
     },
     showsError(text: string) {
       cy.contains('[data-test=error]', text).should('be.visible')

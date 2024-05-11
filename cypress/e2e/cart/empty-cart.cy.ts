@@ -18,7 +18,7 @@ describe('Perf Glitch', () =>{
             LoginPage.login(user.username, user.password)
             cy.visit('/cart.html')
             inventoryItem.getCartBadge().should('not.exist')
-            cy.get('[data-test="checkout"]').should('be.visible').and('be.disabled')
+            cy.getByTest('checkout').should('be.visible').and('be.disabled')
 
         })
 
