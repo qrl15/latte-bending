@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "types": ["cypress", "cypress-map"],
+    "types": [
+      "cypress",
+      "cypress-map"
+    ],
     "target": "es2016",
     "strict": true,
     "allowJs": true,
@@ -10,12 +13,18 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "baseUrl": "src",
-    "paths": {
-      "@support/*": ["../cypress/support/*"],
-      "@fixtures/*": ["../cypress/fixtures/*"]
-    }
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "isolatedModules": true,
+    "jsx": "preserve"
   },
-  "include":  [
+  "include": [
     "cypress/support/**/*.ts",
     "cypress/e2e/**/*.js",
     "cypress/e2e/**/*.ts"
