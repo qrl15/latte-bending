@@ -13,7 +13,7 @@ describe('Product', () => {
   const user = Cypress.env('users').standard
   
   beforeEach(() => {
-    LoginPage.setLogin(user.username, user.password)
+    LoginPage.login(user.username, user.password)
     cy.visit('/inventory.html')
     cy.location('pathname').should('equal', '/inventory.html')
   })
