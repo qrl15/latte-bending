@@ -13,11 +13,9 @@ export const InventoryItem = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  const { history } = props
+  const { history, search } = props
   // Get our queryparams now
-  const queryParams = new URLSearchParams(
-    window.location.search || props.search,
-  )
+  const queryParams = new URLSearchParams(props.search || window.location.search)
   let inventoryId = -1
   let item
 
