@@ -1,0 +1,21 @@
+name: ci
+on: [push]
+jobs:
+  # Run end-to-end tests using the standard workflow
+  e2e:
+    uses: cypress-io/github-action@v4
+    with:
+      # Check the spec types in the "build" step
+      # Since we don't have any specific build for our app
+      # Don't forget to start the application
+      # and wait for the "http://127.0.0.1:3000" to respond
+      # Note: GitHub Actions have Node v18 installed
+      build: npm run lint
+      start: npm run start-18
+      wait-on: 'http://127.0.0.1:3000'
+
+  # In a separate job, run component tests
+  components:
+    uses: cypress-io/github-action@v4
+    with:
+      component: true
