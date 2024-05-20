@@ -1,21 +1,30 @@
-name: ci
+name: End-to-end tests
 on: [push]
 jobs:
-  # Run end-to-end tests using the standard workflow
-  e2e:
-    uses: cypress-io/github-action@v4
-    with:
-      # Check the spec types in the "build" step
-      # Since we don't have any specific build for our app
-      # Don't forget to start the application
-      # and wait for the "http://127.0.0.1:3000" to respond
-      # Note: GitHub Actions have Node v18 installed
-      build: npm run lint
-      start: npm run start-18
-      wait-on: 'http://127.0.0.1:3000'
-
-  # In a separate job, run component tests
-  components:
-    uses: cypress-io/github-action@v4
-    with:
-      component: true
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      # https://github.com/cypress-io/github-action
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+      # after the test run completes
+      # store videos and any screenshots
+      # NOTE: screenshots will be generated only if E2E test failed
+      # thus we store screenshots only on failures
+      # Alternative: create and commit an empty cypress/screenshots folder
+      # to always have something to upload
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      # Test run video was always captured, so this action uses "always()" condition
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
