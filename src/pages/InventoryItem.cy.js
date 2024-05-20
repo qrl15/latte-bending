@@ -27,7 +27,7 @@ describe('InventoryItem', () => {
     inventoryItem.getCartBadge().should('not.exist')
    })
 
-   it.only("stores the cart items in the local storage (cy.then)", () => {
+   it("stores the cart items in the local storage (cy.then)", () => {
     cy.contains('button', 'Add to cart').click()
       // get the "cart-contents" from the local storage
     // and verify it contains an array with just number 1 inside
@@ -54,6 +54,19 @@ describe('InventoryItem', () => {
     })
    })
 
+
+   it.only('Optimize Stores the cart items in the local storage', () => {
+    cy.contains('button', 'Add to cart').click()
+    cy.wrap(localStorage).invoke('getItem', 'cart-contents')
+    .then(JSON.parse)
+    .should('deep.equal', [1])
+
+    cy.contains('button', 'Remove').click()
+    cy.wrap(localStorage)
+    .invoke('getItem', 'cart-contents')
+    .apply(JSON.parse)
+    .should('deep.equal', [1])
+   })
 
 })
 
