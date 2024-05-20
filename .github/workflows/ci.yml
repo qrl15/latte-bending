@@ -15,7 +15,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Start application and run Cypress tests
         run: npm run dev
