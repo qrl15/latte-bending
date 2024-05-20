@@ -43,6 +43,8 @@ module.exports = defineConfig({
 
   component: {
     devServer: {
+      // specPattern: 'cypress/component/**/*.cy.js',
+      // specPattern: 'cypress/pages/**/*.cy.js',
       framework: "create-react-app",
       bundler: "webpack",
     },
