@@ -8,6 +8,7 @@ describe('InventoryItem', () => {
   const id = Cypress._.random(0, InventoryData.length - 1)
   beforeEach(()=> {
     cy.mountWithRouter(<InventoryItem search={'id=' +id} />)
+    cy
   })
 
   it('shows an item', () => {

@@ -15,7 +15,7 @@ describe("Session Logout", () => {
   }
   it("Log out ", () => {
 
-    LoginPage.setLogin(user.username, user.password)
+    LoginPage.login(user.username, user.password)
     cy.visit('/inventory.html');
     cy.location('pathname').should('equal', '/inventory.html')
     cy.contains('button', 'Open Menu').click()
