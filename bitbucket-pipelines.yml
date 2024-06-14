@@ -1,22 +1,44 @@
-image: cypress/base:10
+image: cypress/base:12.14.0
 
 pipelines:
-  default:
-    - step:
-        name: Install dependencies
-        caches:
-          - node
-        script:
-          - npm install --legacy-peer-deps
-          - npm ci
-          # start the server in the background
-          - npm run start &
-          # run Cypress tests
-          - npm run e2e
+  branches:
+    latte-reference:
+      - step:
+          name: Checkout code
+          caches:
+            - node
+          script:
+            - npm install --legacy-peer-deps
+
+      - step:
+          name: Run Cypress tests
+          services:
+            - docker
+          caches:
+            - node
+          script:
+            - npm run headless
+
+    master:
+      - step:
+          name: Checkout code
+          caches:
+            - node
+          script:
+            - npm install --legacy-peer-deps
+
+      - step:
+          name: Run Cypress tests
+          services:
+            - docker
+          caches:
+            - node
+          script:
+            - npm run headless
+
 definitions:
   caches:
     node: ~/.npm
   services:
     docker:
       memory: 1024
-
