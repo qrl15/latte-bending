@@ -4,14 +4,14 @@ pipelines:
   branches:
     latte-reference:
       - step:
-          name: Checkout code
+          name: Install dependencies
           caches:
             - node
           script:
             - npm install --legacy-peer-deps
 
       - step:
-          name: Run Cypress tests
+          name: Start server and run Cypress tests
           services:
             - docker
           caches:
@@ -21,20 +21,21 @@ pipelines:
 
     master:
       - step:
-          name: Checkout code
+          name: Install dependencies
           caches:
             - node
           script:
             - npm install --legacy-peer-deps
 
       - step:
-          name: Run Cypress tests
+          name: Start server and run Cypress tests
           services:
             - docker
           caches:
             - node
           script:
             - npx start-server-and-test start-18 http://127.0.0.1:3000 cypress:run
+
 definitions:
   caches:
     node: ~/.npm
