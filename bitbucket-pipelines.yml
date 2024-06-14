@@ -17,7 +17,9 @@ pipelines:
           caches:
             - node
           script:
-            - npx start-server-and-test start-18 http://127.0.0.1:3000 cypress:run
+            - npm run start-18 & # Start the server in the background
+            - npx wait-on http://127.0.0.1:3000 # Wait for the server to be ready
+            - npx cypress run # Run Cypress tests
 
     master:
       - step:
@@ -34,7 +36,9 @@ pipelines:
           caches:
             - node
           script:
-            - npx start-server-and-test start-18 http://127.0.0.1:3000 cypress:run
+            - npm run start-18 & # Start the server in the background
+            - npx wait-on http://127.0.0.1:3000 # Wait for the server to be ready
+            - npx cypress run # Run Cypress tests
 
 definitions:
   caches:
