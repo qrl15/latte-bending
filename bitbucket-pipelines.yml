@@ -17,7 +17,7 @@ pipelines:
           caches:
             - node
           script:
-            - npx cypress run
+            - npm run dev
 
     master:
       - step:
@@ -34,7 +34,7 @@ pipelines:
           caches:
             - node
           script:
-            - npx cypress run
+            - npm run dev
 definitions:
   caches:
     node: ~/.npm
