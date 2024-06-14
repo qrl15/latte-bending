@@ -17,7 +17,7 @@ pipelines:
           caches:
             - node
           script:
-            - npm run headless
+            - npm Cypress run
 
     master:
       - step:
@@ -34,7 +34,7 @@ pipelines:
           caches:
             - node
           script:
-            - npm run headless
+            - npm Cypress run
 
 definitions:
   caches:
