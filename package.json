@@ -39,7 +39,7 @@
     "cy:open": "cypress open --e2e",
     "dev": "start-server-and-test start-18 http://127.0.0.1:3000 cy:open",
     "ci": "start-test start-18 3000",
-    "headless": "DEBUG=cypress:* npx cypress run",
+    "headless": "start-server-and-test start-18 http://127.0.0.1:3000 test",
     "lint": "tsc --noEmit --pretty"
   },
   "browserslist": {
