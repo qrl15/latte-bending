@@ -30,15 +30,9 @@ module.exports = defineConfig({
           password: "secret_sauce",
         },
       },
-<<<<<<< HEAD
       'cypress-watch-and-reload': {
         watch: ['src/**'],
       }
-=======
-      "cypress-watch-and-reload": {
-        watch: ["src/**"],
-      },
->>>>>>> 4bfc2a4d6a8ca8e884583907c8be26a1bd2a8a64
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here

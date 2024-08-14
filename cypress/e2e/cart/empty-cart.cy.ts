@@ -18,20 +18,7 @@ describe('Perf Glitch', () =>{
             LoginPage.login(user.username, user.password)
             cy.visit('/cart.html')
             inventoryItem.getCartBadge().should('not.exist')
-<<<<<<< HEAD
             cy.get('[data-test="checkout"]').should('be.visible').and('be.disabled')
-=======
-            cy.getByTest('checkout').should('be.visible').and('be.disabled')
-
-        })
-
-        it('Disables the Checkout Button', () => {
-            LoginPage.login(user.username,user.password)
-            cy.visit('/Cart.html')
-            inventoryItem.getCartBadge().should('not.exist')
-            cy.getByTest('checkout').should('be.visible').and('be.disabled')
-
->>>>>>> 4bfc2a4d6a8ca8e884583907c8be26a1bd2a8a64
         })
     
     

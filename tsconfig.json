@@ -20,12 +20,7 @@
     "cypress/support/**/*.ts",
     "cypress/e2e/**/*.js",
     "cypress/e2e/**/*.ts",
-<<<<<<< HEAD
     "node_modules/cypress",
     "cypress/support/index.d.ts"
-=======
-    "cypress/support/component.js",
-    "src/pages/InventoryItem.cy.ts"
->>>>>>> 4bfc2a4d6a8ca8e884583907c8be26a1bd2a8a64
   ]
 }
