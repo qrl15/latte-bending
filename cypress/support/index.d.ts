@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 declare namespace Cypress {
-    interface Chainable {
+    interface Chainable <Subject = any> {
       /**
        * Fill the current form (the parent subject)
        * with the given values. The argument is an object
@@ -9,13 +9,13 @@ declare namespace Cypress {
        * @example
        *  cy.get('form').fillForm({ '#name': 'Joe' }).submit()
        */
-      fillForm(selectorsValues: object): Chainable<JQuery<HTMLFormElement>>
+      fillForm<T extends Record<string, string>>(selectorsValues: T): Chainable<Subject>;
 
     /**
      * Returns elements that have "data-test" attribute with the given value
      * @example
      *  getByTest('checkout').should('be.visible')
      */
-      getByTest(testId: string): Chainable<JQuery<HTMLElement>>
+      getByTest(testId: string): Chainable<Subject>;
     }
   }

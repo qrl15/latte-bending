@@ -2,6 +2,7 @@
   "compilerOptions": {
     "types": ["cypress", "cypress-map"],
     "target": "es2016",
+    "lib": ["es2017", "dom"],
     "strict": true,
     "allowJs": true,
     "noEmit": true,
@@ -18,6 +19,8 @@
   "include":  [
     "cypress/support/**/*.ts",
     "cypress/e2e/**/*.js",
-    "cypress/e2e/**/*.ts"
+    "cypress/e2e/**/*.ts",
+    "node_modules/cypress",
+    "cypress/support/index.d.ts"
   ]
 }

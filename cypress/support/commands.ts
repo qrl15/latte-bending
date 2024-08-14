@@ -31,18 +31,12 @@ import './commands'
 //   return cy.get('@formElement')
 // })
 
-Cypress.Commands.add('fillForm',
-  // @ts-ignore
-  { prevSubject: 'element'}, ($form, inputs) => {
-    cy.wrap($form, { log: false }).within(() => {
-      // iterate over the input fields
-      // and type into each selector (key) the value
-      Cypress._.forEach(inputs, (value, selector) => {
-        cy.get(selector).type(value)
-
-        // confirm the input has been set correctly
-        cy.get(selector).should('have.value', value)
-      })
+Cypress.Commands.add('fillForm', { prevSubject: 'element'}, (element, selectorsValues) => {
+  cy.wrap(element).within(() => {
+    Object.entries(selectorsValues).forEach(([selector, value]: [string, string]) =>{
+      cy.get(selector).type(value);
+      cy.get(selector).should('have.value', value);
     })
-  },
-)
+  })
+})
+
