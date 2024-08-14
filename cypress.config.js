@@ -2,39 +2,57 @@ const { defineConfig } = require("cypress");
 // const registerDataSession = require('cypress-data-session/src/plugin')
 module.exports = defineConfig({
   projectId: "wumo2i",
-  video:true,
+  video: true,
+
   e2e: {
-    specPattern: ['cypress/e2e/**/*.{js,jsx,ts,tsx}', 'cypress/demo/**/*.{js,jsx,ts,tsx}'],
-    baseUrl: 'http://localhost:3000',
-    supportFile: 'cypress/support/e2e.ts',
+    specPattern: [
+      "cypress/e2e/**/*.{js,jsx,ts,tsx}",
+      "cypress/demo/**/*.{js,jsx,ts,tsx}",
+    ],
+    baseUrl: "http://localhost:3000",
+    supportFile: "cypress/support/e2e.ts",
     env: {
       users: {
         standard: {
-          username: 'standard_user',
-          password: 'secret_sauce'
+          username: "standard_user",
+          password: "secret_sauce",
         },
         lockedout: {
-          username: 'locked_out_user',
-          password: 'secret_sauce'
+          username: "locked_out_user",
+          password: "secret_sauce",
         },
         problemUser: {
-          username: 'problem_user',
-          password: 'secret_sauce'
+          username: "problem_user",
+          password: "secret_sauce",
         },
         glitchUser: {
-          username: 'performance_glitch_user',
-          password: 'secret_sauce'
+          username: "performance_glitch_user",
+          password: "secret_sauce",
         },
       },
+<<<<<<< HEAD
       'cypress-watch-and-reload': {
         watch: ['src/**'],
       }
+=======
+      "cypress-watch-and-reload": {
+        watch: ["src/**"],
+      },
+>>>>>>> 4bfc2a4d6a8ca8e884583907c8be26a1bd2a8a64
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here
-
       // registerDataSession(on, config)
       // return config
+    },
+  },
+
+  component: {
+    devServer: {
+      // specPattern: 'cypress/component/**/*.cy.js',
+      // specPattern: 'cypress/pages/**/*.cy.js',
+      framework: "create-react-app",
+      bundler: "webpack",
     },
   },
 });

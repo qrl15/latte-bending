@@ -48,6 +48,7 @@ const Cart = ({ history }) => {
                 size={BUTTON_SIZES.MEDIUM}
                 testId="checkout"
                 type={BUTTON_TYPES.ACTION}
+                disabled={contents.length === 0}
               />
             </div>
           </div>

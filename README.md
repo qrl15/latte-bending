@@ -1,3 +1,4 @@
+[![End-to-end tests](https://github.com/qrl15/latte-bending/actions/workflows/ci.yml/badge.svg?branch=latte-reference)](https://github.com/qrl15/latte-bending/actions/workflows/ci.yml)
 Requires Node v16+
 
 ```

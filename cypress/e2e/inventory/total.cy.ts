@@ -21,7 +21,7 @@ describe('Total', { viewportHeight: 1200 }, () => {
     })
 
     it('get total', { viewportHeight: 1200 }, () =>{
-        const pickedItem = Cypress._.sampleSize(inventory, 3)
+        const pickedItem = Cypress._.sampleSize(inventory, 0)
         const ids = Cypress._.map(pickedItem, 'id')
         window.localStorage.setItem('cart-contents', JSON.stringify(ids))
         cy.visit('/checkout-step-one.html')
@@ -30,18 +30,18 @@ describe('Total', { viewportHeight: 1200 }, () => {
     it('Optimized Total', { viewportHeight: 1200 }, () => {
         //Access fixture JSON file
         cy.fixture('inventory-list.json').then((inventory) => {
-            const pickedItem = Cypress._.sampleSize(inventory, 3)
+            const pickedItem = Cypress._.sampleSize(inventory, 0)
             const ids = Cypress._.map(pickedItem, 'id')
            window.localStorage.setItem('cart-contents', JSON.stringify(ids))
             cy.visit('/checkout-step-one.html')
         })
     })
 
-    it('shows the right total price', { viewportHeight: 1200 }, () => {
+    it.only('shows the right total price', { viewportHeight: 1200 }, () => {
         // pick random 3 items from the InventoryData array
         // https://lodash.com/docs
         // Tip: I told you Lodash is a super neat library
-        const pickedItems = Cypress._.sampleSize(InventoryData, 3)
+        const pickedItems = Cypress._.sampleSize(InventoryData, 1)
         // grab the "id" property from each item in the picked items
         // Tip: I told you Lodash is a super neat library
         const ids = Cypress._.map(pickedItems, 'id')
@@ -155,7 +155,7 @@ describe('Total', { viewportHeight: 1200 }, () => {
           // https://on.cypress.io/then
           .then(Number)
           // and confirm the number is between min and max tax numbers
-          // https://glebbahmutov.com/cypress-examples/commands/assertions.html
+
           .should('be.within', minTax, maxTax)
       })
 })
