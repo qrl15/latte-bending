@@ -3,7 +3,10 @@ declare namespace Cypress {
   interface Chainable <Subject = any> {
     /**
      * Fill the current form (the parent subject)
-@@ -10,12 +11,37 @@ declare namespace Cypress {
+     * with the given values. The argument is an object
+     * with the keys being selectors and values being the strings
+     * to type into the input fields.
+     * @example
      *  cy.get('form').fillForm({ '#name': 'Joe' }).submit()
      */
     fillForm<T extends Record<string, string>>(selectorsValues: T): Chainable<Subject>;

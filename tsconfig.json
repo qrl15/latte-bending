@@ -21,6 +21,6 @@
     "cypress/e2e/**/*.js",
     "cypress/e2e/**/*.ts",
     "node_modules/cypress",
-    "cypress/support/index.d.ts"
+    "cypress/support/index.d.ts",
   ]
 }
